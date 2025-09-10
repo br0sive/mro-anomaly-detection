@@ -1,0 +1,18 @@
+build/
+dist/
+
+.webassets-cache
+.ipynb_checkpoints
+.python-version
+.env
+
+# VS Code
+.vscode/
+
+# temp
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+

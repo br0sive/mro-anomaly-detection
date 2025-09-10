@@ -1,0 +1,131 @@
+# Aircraft Engine Maintenance Anomaly Detection Configuration
+
+# Data Generation Settings
+data:
+  output_dir: "data/out"
+  seed: 42
+  default_rows: 50000
+  default_anomaly_rate: 0.07
+
+  # Entity counts
+  engines: 50
+  modules_per_engine: 8
+  submodules_per_module: 5
+  parts_per_submodule: 10
+
+  # Time settings
+  date_range_days: 60
+  start_date: "2024-01-01"
+
+  # Task settings
+  task_names:
+    - "inspection"
+    - "repair"
+    - "replacement"
+    - "testing"
+    - "calibration"
+    - "cleaning"
+    - "assembly"
+    - "disassembly"
+
+  # Technician settings
+  tech_grades: ["A", "B", "C"]
+  max_concurrent_tasks: 5
+
+# Model Configuration
+models:
+  isolation_forest:
+    n_estimators: 500
+    max_samples: "auto"
+    contamination: 0.07
+    random_state: 42
+
+  autoencoder:
+    input_dim: 128
+    hidden_dims: [128, 64, 32]
+    dropout_rate: 0.3
+    learning_rate: 0.0005
+    batch_size: 64
+    epochs: 150
+    early_stopping_patience: 15
+
+  ensemble:
+    if_weight: 0.5
+    ae_weight: 0.5
+    threshold_percentile: 90
+
+# Feature Engineering
+features:
+  rolling_window_days: 7
+  scaling_method: "robust"
+
+  # KPI settings
+  kpi_rolling_window: 30
+
+  # Encoding settings
+  max_categories: 50
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+
+  # Authentication
+  auth:
+    enabled: true
+    bypass_dev: true
+    jwt_secret: "dev-secret-key-change-in-production"
+    jwt_algorithm: "HS256"
+    jwt_expire_minutes: 60
+
+  # Rate limiting
+  rate_limit:
+    requests_per_minute: 1000
+
+  # CORS
+  cors:
+    origins: ["*"]
+    methods: ["GET", "POST", "PUT", "DELETE"]
+    headers: ["*"]
+
+# Logging
+logging:
+  level: "INFO"
+  format: "json"
+  file: "logs/app.log"
+
+# Evaluation
+evaluation:
+  test_size: 0.2
+  time_split: true
+  metrics:
+    - "precision"
+    - "recall"
+    - "f1"
+    - "auc_roc"
+    - "alert_rate"
+    - "mean_latency"
+
+  plots:
+    - "roc_curve"
+    - "pr_curve"
+    - "confusion_matrix"
+    - "score_distributions"
+    - "calibration_curve"
+
+# Artifacts
+artifacts:
+  dir: "artifacts"
+  models:
+    isolation_forest: "iforest.pkl"
+    autoencoder: "ae.h5"
+    scaler: "scaler.pkl"
+    feature_metadata: "feature_metadata.json"
+    thresholds: "thresholds.json"
+
+# Thresholds
+thresholds:
+  anomaly_score: 0.2
+  reconstruction_error: 0.1
+  alert_cooldown_minutes: 30

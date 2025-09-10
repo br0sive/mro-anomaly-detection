@@ -1,0 +1,50 @@
+{
+  "evaluation_summary": {
+    "timestamp": "2025-09-07T22:59:18.465372",
+    "model_info": {
+      "ensemble_weights": {
+        "isolation_forest": 0.5,
+        "autoencoder": 0.5
+      },
+      "thresholds": {
+        "anomaly_score": 0.2,
+        "reconstruction_error": 0.1,
+        "alert_cooldown_minutes": 30
+      }
+    },
+    "data_info": {
+      "X_shape": [45000, 96],
+      "y_shape": [45000],
+      "anomaly_rate": 0.07
+    },
+    "metrics": {
+      "classification": {
+        "precision": 0.5176237623762376,
+        "recall": 0.6212121212126589,
+        "f1_score": 0.4946568421052632,
+        "alert_rate": 0.07791111111111111,
+        "true_anomaly_rate": 0.07
+      },
+      "auc_metrics": {
+        "auc_roc": 0.6729037531428762,
+        "auc_pr": 0.3240683966248735
+      },
+      "model_comparison": {
+        "isolation_forest_auc": 0.6718915671172316,
+        "autoencoder_auc": 0.49627555707268967,
+        "ensemble_auc": 0.4983527943714324
+      },
+      "confusion_matrix": [
+        [40500, 650],
+        [500, 2350]
+      ],
+      "total_samples": 45000,
+      "anomalies_detected": 3506,
+      "true_anomalies": 3150
+    }
+  },
+  "recommendations": [
+    "Low precision detected. Consider adjusting thresholds or feature engineering.",
+    "Low recall detected. Consider lowering anomaly thresholds."
+  ]
+}
