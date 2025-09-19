@@ -4,6 +4,8 @@ by: Sahan Chamuditha Amarasekara Ranasinghe Arachchilage
 
 ( 30011917 - MSc Artificial Intelligence | University of South Wales, UK )
 
+Demo Video: https://drive.google.com/file/d/1b4liypHFAssa-aAciIYKX1wkIevX4eLa/view
+
 ## Setup Guide
 
 ```bash
